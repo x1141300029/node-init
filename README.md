@@ -15,6 +15,7 @@ express
 formidable 表单解析，用于文件上传
 http-errors 请求错误信息
 log4js log日志
+jsonwebtoken 生成token
 md5-node md5加密-本项目中暂未使用-可用于密码加密
 mysql 链接数据库使用
 require-dir 读取文件夹-本项目中读取router信息，并进行统一添加到 app中
