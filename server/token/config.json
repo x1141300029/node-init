@@ -1,0 +1,5 @@
+{
+  "secret": "test",
+  "desc": "secret秘钥 expiresIn token过期时间",
+  "expiresIn": 2592000
+}

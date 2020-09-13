@@ -1,0 +1,29 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "极速搭建nodejs项目",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js",
+    "dev:test": "cross-env NODE_ENV=test nodemon server/index.js",
+    "build": "cross-env NODE_ENV=production nodemon server/index.js"
+  },
+  "author": "邢世宽",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "config": "^3.3.1",
+    "cookie-parser": "^1.4.5",
+    "cross-env": "^7.0.2",
+    "express": "^4.17.1",
+    "formidable": "^1.2.2",
+    "http-errors": "^1.8.0",
+    "log4js": "^6.3.0",
+    "md5-node": "^1.0.1",
+    "mysql": "^2.18.1",
+    "require-dir": "^1.2.0",
+    "validator-xingsk": "^1.0.5"
+  }
+}
