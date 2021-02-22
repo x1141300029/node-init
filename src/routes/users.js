@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const tokenConfig = require('../../server/token');
-const { success,error} = require('../../server/responseConfig');
+const {success, error} = require('../../server/responseConfig');
 import {validate} from 'validator-xingsk'
 
 const {insertUsers, queryUsers} = require('../connection/ConnectionUsers')
@@ -12,7 +12,7 @@ const {insertUsers, queryUsers} = require('../connection/ConnectionUsers')
  * @param email {String} 邮箱
  * @param password {String} 密码
  */
-router.post('/login', (req, response) => {
+router.post('/login', async (req, response) => {
     let body = req.body || {};
     let message = validate([
         {value: body.email || "", required: true, type: 'email', message: '邮箱格式错误'},
@@ -22,22 +22,22 @@ router.post('/login', (req, response) => {
         response.status(500).send(error(message));
         return false;
     }
-    queryUsers({email: body.email, password: body.password}).then(res => {
-        if (res && res.data && res.data.length > 0) {
+    try {
+        let queryUsersRes = await queryUsers({email: body.email, password: body.password});
+        if (queryUsersRes && queryUsersRes.data && queryUsersRes.data.length > 0) {
             //查询到数据了
-            let userInfo = res.data[0];
+            let userInfo = queryUsersRes.data[0];
             let token = tokenConfig.generateToken({_id: userInfo['_id'], email: userInfo['email']});
             response.status(200).send(success({
                 code: 1,
                 data: Object.assign({token: token}, {_id: userInfo['_id'], email: userInfo['email']})
             }))
         } else {
-            response.status(200).send(success(Object.assign(res, {code: -1, message: '邮箱或密码错误'})))
+            response.status(200).send(success(Object.assign(queryUsersRes, {code: -1, message: '邮箱或密码错误'})))
         }
-    }).catch(res => {
-        response.status(200).send(success(Object.assign(res, {code: -1, message: '登录失败'})))
-    })
-
+    } catch (e) {
+        response.status(200).send(success(Object.assign(e, {code: -1, message: '登录失败'})))
+    }
 });
 /**
  * 用户注册
@@ -46,7 +46,7 @@ router.post('/login', (req, response) => {
  * @param password {String} 密码
  * @param code {Number} 邮箱验证码
  */
-router.post('/register', (req, response, next) => {
+router.post('/register', async (req, response, next) => {
     let body = req.body || {};
     let message = validate([
         {value: body.email || "", required: true, type: 'email', message: '邮箱格式错误'},
@@ -57,15 +57,16 @@ router.post('/register', (req, response, next) => {
         response.status(500).send(error(message));
         return false;
     }
-    insertUsers({
-        email: body.email,
-        password: body.password,
-        code: body.code,
-    }).then(res => {
-        response.status(200).send(success(Object.assign(res, {code: 1, message: '注册成功'})))
-    }).catch(res => {
-        response.status(200).send(success(Object.assign(res, {code: -1, message: '注册失败'})))
-    });
+    try {
+        let user = insertUsers({
+            email: body.email,
+            password: body.password,
+            code: body.code,
+        });
+        response.status(200).send(success(Object.assign(user, {code: 1, message: '注册成功'})))
+    } catch (e) {
+        response.status(200).send(success(Object.assign(e, {code: -1, message: '注册失败'})))
+    }
 });
 /**
  * 验证token

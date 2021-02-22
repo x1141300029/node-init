@@ -22,6 +22,7 @@ app.use(log4js.connectLogger(logger, {level: 'auto', nolog: [/static/g]}))
 app.use(express.json({limit: '50mb'}))
 app.use(express.urlencoded({extended: false, limit: '50mb'}))
 app.use(cookieParser())
+// 静态文件访问路径
 app.use('/static', express.static('public'));
 // 路由注册
 require('./router')(app);
