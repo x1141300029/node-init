@@ -10,12 +10,10 @@ module.exports = {
     success: true
   },
   ERROR: {
+    code:-404,
     error: true
   },
   VERSION: {
     V1: 'V1'
   },
-  HOMEDIR: process.env.HOME || process.env.USERPROFILE,
-
-  UPLOAD_DIST: `${process.env.HOME || process.env.USERPROFILE}/${global.RUNTIME.uploadDist || '/muyang-upload'}`
 };

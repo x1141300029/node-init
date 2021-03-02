@@ -7,10 +7,26 @@ import {validate} from 'validator-xingsk'
 
 const {insertUsers, queryUsers} = require('../connection/ConnectionUsers')
 /**
- * 用户登陆
- * @url http://127.0.0.1:8090/users/login
- * @param email {String} 邮箱
- * @param password {String} 密码
+ * @api {POST} /users/login 用户登录
+ * @apiDescription 用户登录
+ * @apiGroup 用户
+ * @apiSuccess (200) {type} apiSuccess 成功
+ * @apiParam {String} email 邮箱
+ * @apiParam {String} password 密码
+ * @apiParamExample {Object} Request-Example:
+ * {
+ *     id:660318
+ * }
+ *
+ * @apiSuccessExample {type} Success-Response:
+ * {
+ *     code:1,
+ *     message:"登录成功",
+ *     data:[]
+ * }
+ *
+ * @apiSampleRequest /users/login
+ * @apiVersion 1.0.0
  */
 router.post('/login', async (req, response) => {
     let body = req.body || {};

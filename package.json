@@ -1,7 +1,7 @@
 {
   "name": "node",
   "version": "1.0.0",
-  "description": "极速搭建nodejs项目",
+  "description": "极速搭建nodejs项目,版权所有者©邢世宽，联系方式：13161497787（同微信）",
   "main": "server/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js",
@@ -9,11 +9,13 @@
     "build:test": "pm2 start pm2.config.js --env test",
     "build:prod": "pm2 start pm2.config.js --env production",
     "restart": "pm2 restart node-init",
-    "stop": "pm2 delete node-init"
+    "stop": "pm2 delete node-init",
+    "build:api": "apidoc -i ./src/routes/ -o ./public/doc/"
   },
   "author": "邢世宽",
   "license": "ISC",
   "devDependencies": {
+    "apidoc": "^0.26.0",
     "babel-core": "^6.26.3",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
@@ -21,6 +23,7 @@
     "config": "^3.3.1",
     "cookie-parser": "^1.4.5",
     "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "formidable": "^1.2.2",
     "http-errors": "^1.8.0",

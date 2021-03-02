@@ -1,10 +1,10 @@
+'use script'
 /**
  * 路由支持
  * @author SHADOW
  * @date 2020-03-06
  * @type { Object }
  */
-'use script'
 module.exports = {
 
   /**
@@ -24,7 +24,7 @@ module.exports = {
    * @param res
    */
   authValidate: function(req, res) {
-    if (global.RUNTIME === 'development') {
+    if (process.env.NODE_ENV === 'development') {
       return true
     }
     const token = req.headers['auth-token']

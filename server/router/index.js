@@ -14,7 +14,6 @@ module.exports = function(app) {
         global.LOGGER.info('=> load application router');
         for (const key in routes) {
             const route = routes[key];
-
             printRouter(key,route.stack);
             app.use(`/${key}`,route);
         }

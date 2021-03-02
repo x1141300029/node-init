@@ -39,11 +39,11 @@ validator-xingsk 验证请求参数，具体使用方式见npmjs.com官网搜索
 ### 项目中判断运行环境
 
 ```
-if(global.RUNTIME==="development"){
+if(process.env.NODE_ENV==="development"){
 	console.log('本地环境');
-}else if(global.RUNTIME="test"){
+}else if(process.env.NODE_ENV="test"){
 	console.log('测试环境');
-}else if(global.RUNTIME="production"){
+}else if(process.env.NODE_ENV="production"){
 	console.log('production');
 }
 ```
