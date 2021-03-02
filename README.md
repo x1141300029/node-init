@@ -27,9 +27,13 @@ validator-xingsk 验证请求参数，具体使用方式见npmjs.com官网搜索
 ```
 运行sql文件 sql文件在项目根目录
 安装依赖 npm i
+安装运行环境 npm i -g pm2
+
+重启服务形式 npm run restart
+停止服务 npm run stop
 运行本地项目 npm run dev
-运行测试项目 npm run dev:test
-运行正式项目 npm run build
+运行测试项目 npm run build:test
+运行正式项目 npm run build:prod
 ```
 
 ### 项目中判断运行环境

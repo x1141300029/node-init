@@ -1,0 +1,21 @@
+module.exports={
+    apps:[
+        {
+            name:"node-init",
+            script:"./server/index.js",
+            watch:false,
+            env:{
+                NODE_ENV:"development",
+                port:8656
+            },
+            env_test:{
+                NODE_ENV: "test",
+                port:8656
+            },
+            env_production:{
+                NODE_ENV:"production",
+                port:8656
+            }
+        }
+    ]
+}
